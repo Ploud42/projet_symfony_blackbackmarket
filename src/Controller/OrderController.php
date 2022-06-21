@@ -24,17 +24,29 @@ class OrderController extends AbstractController
         $form = $this->createForm(OrderType::class, $order);
 
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            // $form->getData() holds the submitted values
-            // but, the original `$task` variable has also been updated
-            $order = $form->getData();
+        if ($form->isSubmitted()) {
+            if ($form->isValid()) {
+                // $form->getData() holds the submitted values
+                // but, the original `$task` variable has also been updated
+                $order = $form->getData();
 
-            // ... perform some action, such as saving the task to the database
+                // ... perform some action, such as saving the task to the database
 
-            $entityManager->persist($order);
-            $entityManager->flush();
+                $entityManager->persist($order);
+                $entityManager->flush();
 
-            return $this->redirectToRoute('app_home');
+                $this->addFlash(
+                    'notice',
+                    '<div class="alert alert-success" role="alert">Votre annonce a été publiée !</div>'
+                );
+                return $this->redirectToRoute('app_larceny');
+            } else {
+                $this->addFlash(
+                    'notice',
+                    '<div class="alert alert-danger" role="alert"> Une erreur est survenue.</div>'
+                );
+                return $this->redirectToRoute('app_order');
+            }
         }
 
         return $this->renderForm('order/index.html.twig', [

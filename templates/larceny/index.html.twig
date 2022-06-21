@@ -15,7 +15,9 @@
                     <div class="card-body">
                         <h3 class="card-title">{{ order.product }}</h3>
                         {# <a href="actor/{{ actor.id }}" class="btn btn-primary">Voir la fiche de l'acteur</a> #}
-                        <p>Prix : {{ order.price }}</p>
+                        <p><strong>Prime : {{ order.price }} $</strong></p>
+                        <p><strong>Du {{ order.dateStart|date("d/m/Y") }} au {{ order.dateEnd|date("d/m/Y") }}</strong></p>
+                        <p>Publié par <a href="#"> {{ order.buyer }}</a></p>
                     </div>
                     <div class="card-footer">
                         <a href="{{ path('app_singleLarceny', {id: order.id}) }}" class="btn btn-dark">Je vais petav cet objet</a>

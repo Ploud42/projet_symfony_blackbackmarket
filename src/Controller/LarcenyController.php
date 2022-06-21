@@ -37,9 +37,14 @@ class LarcenyController extends AbstractController
                 'notice',
                 '<div class="alert alert-success" role="alert">Vous avez reservé ' . $order->getProduct() . ' !</div>'
             );
-            return $this->redirectToRoute('app_larceny', [
-                'id' => $id,
-            ]);
+        } else {
+            $this->addFlash(
+                'notice',
+                '<div class="alert alert-danger" role="alert">' . $order->getProduct() . ' n\'est plus disponible.</div>'
+            );
         }
+        return $this->redirectToRoute('app_larceny', [
+            'id' => $id,
+        ]);
     }
 }
