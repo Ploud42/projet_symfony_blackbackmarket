@@ -20,7 +20,7 @@ class OrderController extends AbstractController
         $user = $this->getUser();
         $order = new order();
         $order->setBuyer($user);
-        $order->setIsDelivered('false');
+        $order->setIsDelivered(0);
         $form = $this->createForm(OrderType::class, $order);
 
         $form->handleRequest($request);

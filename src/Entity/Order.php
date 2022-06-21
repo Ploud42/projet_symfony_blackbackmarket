@@ -28,10 +28,7 @@ class Order
     #[ORM\Column(type: 'date')]
     private $date_start;
 
-    /**
-     * @Assert\NotBlank
-     * @Assert\Type("\DateTime")
-     */
+    #[Assert\Expression('this.getDateStart() < this.getDateEnd()')]
     #[ORM\Column(type: 'date')]
     private $date_end;
 

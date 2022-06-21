@@ -3,5 +3,12 @@
 {% block title %}Test{% endblock %}
 
 {% block body %}
-    <h1>{{ message }}</h1>
+<div class="pb-3">
+    <h1 class="text-light">{{ message }}</h1>
+    <p class="text-light"><strong>Vous êtes : </strong></p>
+    <p>
+        <a type="button" class="btn btn-light" href="{{ path('app_order') }}">Commanditaire</a>
+        <a type="button" class="btn btn-light" href="{{ path('app_larceny') }}">Brigand</a>
+    </p>
+</div>
 {% endblock %}

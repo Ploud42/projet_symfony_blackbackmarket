@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Larcins{% endblock %}
+
+{% block body %}
+
+<h1 class="text-light text-center">Larcins</h1>
+
+<div class="row">
+    {% for order in orderList %}
+        {% if order.seller == NULL %}
+            <div class="col-12 col-md-6 col-lg-3 mb-2">
+                <div class="card mx-auto h-100">
+                    <img src="{{asset("assets/images/" ~ order.product.image)}}"  class="card-img-top p-2 d-block w-100 actor-img"  alt="...">
+                    <div class="card-body">
+                        <h3 class="card-title">{{ order.product }}</h3>
+                        {# <a href="actor/{{ actor.id }}" class="btn btn-primary">Voir la fiche de l'acteur</a> #}
+                        <p>Prix : {{ order.price }}</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="{{ path('app_singleLarceny', {id: order.id}) }}" class="btn btn-dark">Je vais petav cet objet</a>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+
+{% endblock %}
